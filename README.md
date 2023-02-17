@@ -1,3 +1,7 @@
+### Install
+
+`pip install cprofiler-manager-wrapper`
+
 ### Usage
 
 ```python

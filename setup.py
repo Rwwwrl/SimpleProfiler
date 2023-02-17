@@ -1,7 +1,8 @@
 from setuptools import setup
 
 requires = [
-    "pathlib2"
+    "pathlib2",
+    "snakeviz"
 ]
 
 setup(
