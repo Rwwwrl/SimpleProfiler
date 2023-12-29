@@ -21,13 +21,13 @@ class ProfilerStorage:
 
 
 class Profiler:
-    def __init__(self, func_about_string: str, prof_folder: str = 'prof_folder', disable: bool = False):
+    def __init__(self, comment: str, prof_folder: str = 'prof_folder', disable: bool = False):
         log_folder_abs_path = Path().absolute() / prof_folder
         if not log_folder_abs_path.exists():
             os.mkdir(log_folder_abs_path)
 
-        self._log_folder_path = log_folder_abs_path
-        self._func_about_string = func_about_string
+        self._log_folder_abs_path = log_folder_abs_path
+        self._comment = comment
         self._is_disable = disable
 
     def __enter__(self):
@@ -48,9 +48,9 @@ class Profiler:
 
         profiler_object = self._storage.profile_object
         prof_filename = '{}__{}.prof'.format(
-            self._func_about_string,
+            self._comment,
             self._storage.time,
         )
-        profiler_object.dump_stats(file=self._log_folder_path / prof_filename)
+        profiler_object.dump_stats(file=self._log_folder_abs_path / prof_filename)
         profiler_object.disable()
         return True
